@@ -20,7 +20,8 @@ export default function User() {
   const toastId = "user-toast";
   const navigation = useNavigate();
   let toast = useToast();
-  const handleUserSubmission = async () => {
+
+  const handleUserSubmission = () => {
     if (!username || username.length < 1) {
       if (!toast.isActive(toastId)) {
         return toast({
@@ -34,7 +35,12 @@ export default function User() {
         });
       }
     }
-    await setQuizLocalStorage({ username });
+    setQuizLocalStorage({
+      username,
+      activeQuestion: 0,
+      isCompleted: false,
+      answers: {},
+    });
     navigation("/quiz");
   };
   return (
@@ -52,7 +58,7 @@ export default function User() {
         </ModalBody>
         <ModalFooter>
           <Button colorScheme="blue" mr={3} onClick={handleUserSubmission}>
-            Submit
+            Start
           </Button>
         </ModalFooter>
       </ModalContent>

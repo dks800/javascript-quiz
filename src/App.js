@@ -1,5 +1,4 @@
 import "./App.css";
-import logo from "./img/js-logo.jpg";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import User from "./components/User/User";
 import QuizPage from "./components/QuizPage";

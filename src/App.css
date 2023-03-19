@@ -2,37 +2,50 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.chakra-container {
+  min-width: calc(100vw - 40%);
+  padding: 25px;
+  border-radius: 10px;
+  background-color: white;
+  top: 50px;
+  position: relative;
+  box-shadow: 2px 2px 2px gray;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.js-logo {
+  height: 50px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.chakra-container .title {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: end;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.chakra-container .title span {
+  margin-left: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.question {
+  border-radius: 5px;
+  box-shadow: inset -4px -6px 8px 0px #141414;
+}
+pre {
+  margin: 15px 0 !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.questions.chakra-button__group {
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.questions.chakra-button__group .chakra-button {
+  width: 45%;
+  margin: 10px 0 !important;
+}
+
+.next-button {
+  position: absolute !important;
+  top: 50px;
+  right: 20px;
 }
