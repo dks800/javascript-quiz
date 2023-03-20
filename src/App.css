@@ -42,10 +42,31 @@ pre {
 .questions.chakra-button__group .chakra-button {
   width: 45%;
   margin: 10px 0 !important;
+  display: block;
+  white-space: break-spaces;
+  height: auto;
+  padding: 5px;
 }
 
 .next-button {
   position: absolute !important;
-  top: 50px;
+  top: 0;
   right: 20px;
+  margin: 20px;
+}
+
+.chakra-stat {
+  position: absolute !important;
+  left: 0;
+  top: 0;
+  margin: 20px;
+  color: gray;
+}
+
+.display-question {
+  margin: 20px 0;
+}
+
+.chakra-modal__content-container {
+  padding: 20px;
 }

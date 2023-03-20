@@ -12,3 +12,7 @@ export const getQuizLocalStorage = () => {
   let data = JSON.parse(stringData || "{}");
   return data;
 };
+
+export const resetQuizLocalStorage = () => {
+  localStorage.removeItem(APP_NAME);
+};
