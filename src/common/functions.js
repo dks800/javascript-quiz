@@ -16,3 +16,10 @@ export const getQuizLocalStorage = () => {
 export const resetQuizLocalStorage = () => {
   localStorage.removeItem(APP_NAME);
 };
+
+export const getQuizScore = () => {
+  let data = getQuizLocalStorage();
+  let score = data.score;
+  score = Math.round((100 * data.score) / data.quizLength);
+  return score;
+};

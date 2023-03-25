@@ -14,10 +14,9 @@ export default function DisplayQuestion(props) {
 
   const clickHandler = (selected) => {
     const isCorrect = compare(selected, correctAnswer);
-
     if (userSelection > 0) return false;
     if (isCorrect) setIsCorrectAnswer(true);
-    let score = isCorrect ? parseInt(localData.score) + 10 : localData.score;
+    let score = isCorrect ? parseInt(localData.score) + 1 : localData.score;
 
     setQuizLocalStorage({
       answers: {
@@ -25,6 +24,7 @@ export default function DisplayQuestion(props) {
         [props.activeQuestion]: isCorrect,
       },
       score,
+      lastActive: new Date().toString(),
     });
     setUserSelection(selected);
   };
@@ -64,7 +64,7 @@ export default function DisplayQuestion(props) {
       <div>{`${props.activeQuestion + 1}. ${question.text}`}</div>
       <pre>
         <code className="hljs language-javascript question">
-          {question.codeText}
+          {question?.codeText}
         </code>
       </pre>
       <ButtonGroup className="questions" size="sm">
@@ -95,12 +95,18 @@ export default function DisplayQuestion(props) {
             {question.answerDescription}
           </blockquote>
           <Button
-            colorScheme="blue"
+            colorScheme={
+              compare(props.activeQuestion + 1, localData.quizLength)
+                ? "whatsapp"
+                : "blue"
+            }
             variant="solid"
             className="next-button"
             onClick={handleNextQuestion}
           >
-            Next
+            {compare(props.activeQuestion + 1, localData.quizLength)
+              ? "Finish"
+              : "Next"}
           </Button>
         </>
       )}

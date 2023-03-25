@@ -7,7 +7,7 @@
   padding: 25px;
   border-radius: 10px;
   background-color: white;
-  top: 50px;
+  top: 60px;
   position: relative;
   box-shadow: 2px 2px 2px gray;
 }
@@ -23,6 +23,17 @@
 }
 .chakra-container .title span {
   margin-left: 10px;
+}
+
+.chakra-container .css-rfef5l {
+  position: relative;
+  top: -25px;
+  border-radius: 10px;
+  opacity: 0.8;
+}
+
+.chakra-container .css-rfef5l > div {
+  transition: all 0.2s ease-in-out;
 }
 
 .question {
@@ -69,4 +80,41 @@ pre {
 
 .chakra-modal__content-container {
   padding: 20px;
+}
+
+.chakra-modal__body .chakra-heading p {
+  white-space: pre-line;
+  font-weight: 400;
+}
+
+.quit-quiz {
+  position: absolute !important;
+  top: 10px;
+  right: 25px;
+}
+
+.quit-quiz:hover {
+  animation: shiver 0.1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+@keyframes shiver {
+  from {
+    rotate: 8deg;
+  }
+  to {
+    rotate: -10deg;
+  }
+}
+
+.score > div {
+  border-radius: 10px;
+}
+
+.score .chakra-progress div {
+  font-size: 4rem;
+}
+
+.score .chakra-divider,
+.score .chakra-progress {
+  margin: 10px 0;
 }

@@ -10,6 +10,7 @@ export default function CheckSession({ children, name }) {
   useEffect(() => {
     if (!user) navigate("/");
     if (user && name === "user") navigate("/quiz");
+    if (user && appData.isCompleted) navigate("/score");
   }, []);
   return <>{user ? children : <User />}</>;
 }

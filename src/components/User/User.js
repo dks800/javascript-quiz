@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { setQuizLocalStorage } from "../../common/functions";
 import {
@@ -14,33 +14,40 @@ import {
   useToast,
   Select,
 } from "@chakra-ui/react";
-import { questions } from "../../common/questions";
+import { fullQuestionsLength } from "../../common/questions";
 import "./user.css";
 
 export default function User() {
-  const questionsLength = questions.length;
+  const questionsLength = fullQuestionsLength;
   const [username, setUsername] = useState("");
   const [quizLength, setQuizLength] = useState(0);
 
-  let lengthOptions = [questionsLength];
-  let divider = 1;
-  if (questionsLength >= 100) divider = 25;
-  if (questionsLength >= 50) divider = 20;
-  if (questionsLength >= 30) divider = 10;
-  if (questionsLength >= 10) divider = 5;
-  let tempLength = questionsLength;
+  const getLengthOptions = (questionsLength) => {
+    let divider = 1;
+    let tempLengthOptions = [questionsLength];
+    if (questionsLength >= 100) divider = 25;
+    if (questionsLength >= 50) divider = 20;
+    if (questionsLength >= 30) divider = 10;
+    if (questionsLength >= 10) divider = 5;
+    let tempLength = questionsLength;
 
-  while (tempLength > divider && divider >= 5) {
-    lengthOptions.push(tempLength - divider);
-    tempLength -= divider;
-  }
+    while (tempLength > divider && divider >= 5) {
+      tempLengthOptions.push(tempLength - divider);
+      tempLength -= divider;
+    }
+    return tempLengthOptions;
+  };
+
+  let lengthOptions = useMemo(
+    () => getLengthOptions(questionsLength),
+    [questionsLength]
+  );
 
   const toastId = "user-toast";
   const navigation = useNavigate();
   let toast = useToast();
 
   const handleQuizLengthSelection = (val) => {
-    console.log(val);
     setQuizLength(val);
   };
 
@@ -69,6 +76,7 @@ export default function User() {
       answers: {},
       quizLength,
       score: 0,
+      lastActive: new Date().toString(),
     });
     navigation("/quiz");
   };
@@ -89,7 +97,11 @@ export default function User() {
             onChange={(e) => handleQuizLengthSelection(e.target.value)}
           >
             {lengthOptions.map((value) => {
-              return <option value={value}>{value}</option>;
+              return (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              );
             })}
           </Select>
         </ModalBody>

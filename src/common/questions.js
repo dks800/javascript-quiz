@@ -1,4 +1,4 @@
-export const questions = [
+const questions = [
   {
     text: "What's the output?",
     codeText: `function sayHi() {
@@ -170,10 +170,6 @@ export const questions = [
       {
         text: `ReferenceError`,
         id: "3",
-      },
-      {
-        text: `undefined`,
-        id: "4",
       },
       {
         text: `undefined`,
@@ -878,4 +874,611 @@ console.log(b === c);`,
     \nThis is where an event loop starts to work. An event loop looks at the stack and task queue. If the stack is empty, it takes the first thing on the queue and pushes it onto the stack.\n
     \nbar gets invoked, "Second" gets logged, and it's popped off the stack.`,
   },
+  {
+    text: "What is the event.target when clicking the button?",
+    codeText: `<div onclick="console.log('first div')">
+    <div onclick="console.log('second div')">
+      <button onclick="console.log('button')">
+        Click!
+      </button>
+    </div>
+  </div>`,
+    options: [
+      {
+        text: `Outer div`,
+        id: "1",
+      },
+      {
+        text: `Inner div`,
+        id: "2",
+      },
+      {
+        text: `button`,
+        id: "3",
+      },
+      {
+        text: `An array of all nested elements`,
+        id: "4",
+      },
+    ],
+    answer: "3",
+    answerDescription: `The deepest nested element that caused the event is the target of the event. You can stop bubbling by event.stopPropagation.`,
+  },
+  {
+    text: "When you click the paragraph, what's the logged output?",
+    codeText: `<div onclick="console.log('div')">
+    <p onclick="console.log('p')">
+      Click here!
+    </p>
+  </div>`,
+    options: [
+      {
+        text: `p div`,
+        id: "1",
+      },
+      {
+        text: `div p`,
+        id: "2",
+      },
+      {
+        text: `p`,
+        id: "3",
+      },
+      {
+        text: `div`,
+        id: "4",
+      },
+    ],
+    answer: "1",
+    answerDescription: `If we click p, we see two logs: p and div. During event propagation, there are 3 phases: capturing, target, and bubbling. By default, event handlers are executed in the bubbling phase (unless you set useCapture to true). It goes from the deepest nested element outwards.`,
+  },
+  {
+    text: "What's the output?",
+    codeText: `const person = { name: "Lydia" };
+
+    function sayHi(age) {
+      return \`\${this.name} is \${age}\`;
+    }
+    
+    console.log(sayHi.call(person, 21));
+    console.log(sayHi.bind(person, 21));`,
+    options: [
+      {
+        text: `undefined is 21 Lydia is 21`,
+        id: "1",
+      },
+      {
+        text: `function function`,
+        id: "2",
+      },
+      {
+        text: `Lydia is 21 Lydia is 21`,
+        id: "3",
+      },
+      {
+        text: `Lydia is 21 function`,
+        id: "4",
+      },
+    ],
+    answer: "4",
+    answerDescription: `With both, we can pass the object to which we want the this keyword to refer to. However, .call is also executed immediately!\n\n
+    \n.bind. returns a copy of the function, but with a bound context! It is not executed immediately.`,
+  },
+  {
+    text: "What's the output?",
+    codeText: `function sayHi() {
+      return (() => 0)();
+    }
+    
+    console.log(typeof sayHi());`,
+    options: [
+      {
+        text: `"object"`,
+        id: "1",
+      },
+      {
+        text: `"number"`,
+        id: "2",
+      },
+      {
+        text: `"function"`,
+        id: "3",
+      },
+      {
+        text: `"undefined"`,
+        id: "4",
+      },
+    ],
+    answer: "2",
+    answerDescription: `The sayHi function returns the returned value of the immediately invoked function (IIFE). This function returned 0, which is type "number".\n\n
+    \nFYI: there are only 7 built-in types: \nnull, undefined, boolean, number, string, object, and symbol.\n "function" is not a type, since functions are objects, it's of type "object".`,
+  },
+  {
+    text: "Which of these values are falsy?",
+    codeText: `0;
+    new Number(0);
+    ("");
+    (" ");
+    new Boolean(false);
+    undefined;`,
+    options: [
+      {
+        text: `0, '', undefined`,
+        id: "1",
+      },
+      {
+        text: `0, new Number(0), '', new Boolean(false), undefined`,
+        id: "2",
+      },
+      {
+        text: `0, '', new Boolean(false), undefined`,
+        id: "3",
+      },
+      {
+        text: `All of them are falsy`,
+        id: "4",
+      },
+    ],
+    answer: "1",
+    answerDescription: `There are only six falsy values:\n\n
+    undefined\n
+    null\n
+    NaN\n
+    0\n
+    '' (empty string)\n
+    false\n
+    Function constructors, like new Number and new Boolean are truthy.`,
+  },
+  {
+    text: "What's the output?",
+    codeText: `console.log(typeof typeof 1);`,
+    options: [
+      {
+        text: `"number"`,
+        id: "1",
+      },
+      {
+        text: `"string"`,
+        id: "2",
+      },
+      {
+        text: `"object"`,
+        id: "3",
+      },
+      {
+        text: `"undefined"`,
+        id: "4",
+      },
+    ],
+    answer: "2",
+    answerDescription: `typeof 1 returns "number". typeof "number" returns "string".`,
+  },
+  {
+    text: "What's the output?",
+    codeText: `const numbers = [1, 2, 3];
+    numbers[10] = 11;
+    console.log(numbers);`,
+    options: [
+      {
+        text: `[1, 2, 3, 7 x null, 11]`,
+        id: "1",
+      },
+      {
+        text: `[1, 2, 3, 11]`,
+        id: "2",
+      },
+      {
+        text: `[1, 2, 3, 7 x empty, 11]`,
+        id: "3",
+      },
+      {
+        text: `SyntaxError`,
+        id: "4",
+      },
+    ],
+    answer: "3",
+    answerDescription: `When you set a value to an element in an array that exceeds the length of the array, JavaScript creates something called "empty slots". These actually have the value of undefined, but you will see something like:\n\n
+    [1, 2, 3, 7 x empty, 11]\n
+    \ndepending on where you run it (it's different for every browser, node, etc.)`,
+  },
+  {
+    text: "What's the output?",
+    codeText: `(() => {
+      let x, y;
+      try {
+        throw new Error();
+      } catch (x) {
+        (x = 1), (y = 2);
+        console.log(x);
+      }
+      console.log(x);
+      console.log(y);
+    })();`,
+    options: [
+      {
+        text: `1 undefined 2`,
+        id: "1",
+      },
+      {
+        text: `undefined undefined undefined`,
+        id: "2",
+      },
+      {
+        text: `1 1 2`,
+        id: "3",
+      },
+      {
+        text: `1 undefined undefined`,
+        id: "4",
+      },
+    ],
+    answer: "1",
+    answerDescription: `The catch block receives the argument x. This is not the same x as the variable when we pass arguments. This variable x is block-scoped.\n
+    \nLater, we set this block-scoped variable equal to 1, and set the value of the variable y. Now, we log the block-scoped variable x, which is equal to 1.\n
+    \nOutside of the catch block, x is still undefined, and y is 2. When we want to console.log(x) outside of the catch block, it returns undefined, and y returns 2.`,
+  },
+  {
+    text: "Everything in JavaScript is either a...",
+    codeText: ``,
+    options: [
+      {
+        text: `primitive or object`,
+        id: "1",
+      },
+      {
+        text: `function or object`,
+        id: "2",
+      },
+      {
+        text: `trick question! only objects`,
+        id: "3",
+      },
+      {
+        text: `number or object`,
+        id: "4",
+      },
+    ],
+    answer: "1",
+    answerDescription: `JavaScript only has primitive types and objects.\n
+    \nPrimitive types are boolean, null, undefined, bigint, number, string, and symbol.\n
+    \nWhat differentiates a primitive from an object is that primitives do not have any properties or methods; however, you'll note that 'foo'.toUpperCase() evaluates to 'FOO' and does not result in a TypeError. This is because when you try to access a property or method on a primitive like a string, JavaScript will implicitly wrap the object using one of the wrapper classes, i.e. String, and then immediately discard the wrapper after the expression evaluates. All primitives except for null and undefined exhibit this behaviour.`,
+  },
+  {
+    text: "What's the output?",
+    codeText: `[[0, 1], [2, 3]].reduce(
+      (acc, cur) => {
+        return acc.concat(cur);
+      },
+      [1, 2]
+    );`,
+    options: [
+      {
+        text: `[0, 1, 2, 3, 1, 2]`,
+        id: "1",
+      },
+      {
+        text: `[6, 1, 2]`,
+        id: "2",
+      },
+      {
+        text: `[1, 2, 0, 1, 2, 3]`,
+        id: "3",
+      },
+      {
+        text: `[1, 2, 6]`,
+        id: "4",
+      },
+    ],
+    answer: "3",
+    answerDescription: `[1, 2] is our initial value. This is the value we start with, and the value of the very first acc. During the first round, acc is [1,2], and cur is [0, 1]. We concatenate them, which results in [1, 2, 0, 1].\n
+    \nThen, [1, 2, 0, 1] is acc and [2, 3] is cur. We concatenate them, and get [1, 2, 0, 1, 2, 3]`,
+  },
+  {
+    text: "What's the output?",
+    codeText: `!!null;
+    !!"";
+    !!1;`,
+    options: [
+      {
+        text: `false true false`,
+        id: "1",
+      },
+      {
+        text: `false false true`,
+        id: "2",
+      },
+      {
+        text: `false true true`,
+        id: "3",
+      },
+      {
+        text: `true true false`,
+        id: "4",
+      },
+    ],
+    answer: "2",
+    answerDescription: `null is falsy. !null returns true. !true returns false.\n
+    \n"" is falsy. !"" returns true. !true returns false.\n
+    \n1 is truthy. !1 returns false. !false returns true.`,
+  },
+  {
+    text: "What does the setInterval method return in the browser?",
+    codeText: `setInterval(() => console.log("Hi"), 1000);`,
+    options: [
+      {
+        text: `the amount of milliseconds specified`,
+        id: "2",
+      },
+      {
+        text: `the passed function`,
+        id: "3",
+      },
+      {
+        text: `a unique id`,
+        id: "1",
+      },
+      {
+        text: `undefined`,
+        id: "4",
+      },
+    ],
+    answer: "1",
+    answerDescription: `It returns a unique id. This id can be used to clear that interval with the clearInterval() function.`,
+  },
+  {
+    text: "What does this return?",
+    codeText: `[..."Lydia"];`,
+    options: [
+      {
+        text: `["Lydia"]`,
+        id: "1",
+      },
+      {
+        text: `[[], "Lydia"]`,
+        id: "2",
+      },
+      {
+        text: `[["L", "y", "d", "i", "a"]]`,
+        id: "3",
+      },
+      {
+        text: `["L", "y", "d", "i", "a"]`,
+        id: "4",
+      },
+    ],
+    answer: "4",
+    answerDescription: `A string is an iterable. The spread operator maps every character of an iterable to one element.`,
+  },
+  {
+    text: "What's the output?",
+    codeText: `function* generator(i) {
+      yield i;
+      yield i * 2;
+    }
+    
+    const gen = generator(10);
+    
+    console.log(gen.next().value);
+    console.log(gen.next().value);`,
+    options: [
+      {
+        text: `[0, 10], [10, 20]`,
+        id: "1",
+      },
+      {
+        text: `20 20`,
+        id: "2",
+      },
+      {
+        text: `20 10`,
+        id: "3",
+      },
+      {
+        text: `0, 10 and 10, 20`,
+        id: "4",
+      },
+    ],
+    answer: "3",
+    answerDescription: `Regular functions cannot be stopped mid-way after invocation. However, a generator function can be "stopped" midway, and later continue from where it stopped. Every time a generator function encounters a yield keyword, the function yields the value specified after it. Note that the generator function in that case doesn't return the value, it yields the value.\n
+    \nFirst, we initialize the generator function with i equal to 10. We invoke the generator function using the next() method. The first time we invoke the generator function, i is equal to 10. It encounters the first yield keyword: it yields the value of i. The generator is now "paused", and 10 gets logged.\n
+    \nThen, we invoke the function again with the next() method. It starts to continue where it stopped previously, still with i equal to 10. Now, it encounters the next yield keyword, and yields i * 2. i is equal to 10, so it returns 10 * 2, which is 20. This results in 10, 20.`,
+  },
+  {
+    text: "What does this return?",
+    codeText: `const firstPromise = new Promise((res, rej) => {
+      setTimeout(res, 500, "one");
+    });
+    
+    const secondPromise = new Promise((res, rej) => {
+      setTimeout(res, 100, "two");
+    });
+    
+    Promise.race([firstPromise, secondPromise]).then(res => console.log(res));`,
+    options: [
+      {
+        text: `"one"`,
+        id: "1",
+      },
+      {
+        text: `"two"`,
+        id: "2",
+      },
+      {
+        text: `"two" "one"`,
+        id: "3",
+      },
+      {
+        text: `"one" "two"`,
+        id: "4",
+      },
+    ],
+    answer: "2",
+    answerDescription: `When we pass multiple promises to the Promise.race method, it resolves/rejects the first promise that resolves/rejects. To the setTimeout method, we pass a timer: 500ms for the first promise (firstPromise), and 100ms for the second promise (secondPromise). This means that the secondPromise resolves first with the value of 'two'. res now holds the value of 'two', which gets logged.`,
+  },
+  {
+    text: "What's the output?",
+    codeText: `let person = { name: "Lydia" };
+    const members = [person];
+    person = null;
+    
+    console.log(members);`,
+    options: [
+      {
+        text: `null`,
+        id: "1",
+      },
+      {
+        text: `[null]`,
+        id: "2",
+      },
+      {
+        text: `[{}]`,
+        id: "3",
+      },
+      {
+        text: `[{ name: "Lydia" }]`,
+        id: "4",
+      },
+    ],
+    answer: "4",
+    answerDescription: `First, we declare a variable person with the value of an object that has a name property.\n\n
+    \nThen, we declare a variable called members. We set the first element of that array equal to the value of the person variable. Objects interact by reference when setting them equal to each other. When you assign a reference from one variable to another, you make a copy of that reference. (note that they don't have the same reference!)\n\n
+    \nThen, we set the variable person equal to null.\n
+    \nWe are only modifying the value of the person variable, and not the first element in the array, since that element has a different (copied) reference to the object. The first element in members still holds its reference to the original object. When we log the members array, the first element still holds the value of the object, which gets logged.`,
+  },
+  {
+    text: "What's the output?",
+    codeText: `const person = {
+      name: "Lydia",
+      age: 21
+    };
+    
+    for (const item in person) {
+      console.log(item);
+    }`,
+    options: [
+      {
+        text: `{ name: "Lydia" }, { age: 21 }`,
+        id: "1",
+      },
+      {
+        text: `"name", "age"`,
+        id: "2",
+      },
+      {
+        text: `"Lydia", 21`,
+        id: "3",
+      },
+      {
+        text: `["name", "Lydia"], ["age", 21]`,
+        id: "4",
+      },
+    ],
+    answer: "2",
+    answerDescription: `With a for-in loop, we can iterate through object keys, in this case name and age. Under the hood, object keys are strings (if they're not a Symbol). On every loop, we set the value of item equal to the current key it’s iterating over. First, item is equal to name, and gets logged. Then, item is equal to age, which gets logged.`,
+  },
+  {
+    text: "What's the output?",
+    codeText: `console.log(3 + 4 + "5");`,
+    options: [
+      {
+        text: `"345"`,
+        id: "1",
+      },
+      {
+        text: `"75"`,
+        id: "2",
+      },
+      {
+        text: `"12"`,
+        id: "3",
+      },
+      {
+        text: `12`,
+        id: "4",
+      },
+    ],
+    answer: "2",
+    answerDescription: `Operator associativity is the order in which the compiler evaluates the expressions, either left-to-right or right-to-left. This only happens if all operators have the same precedence. We only have one type of operator: +. For addition, the associativity is left-to-right.\n
+    3 + 4 gets evaluated first. This results in the number 7.\n\n
+    \n7 + '5' results in "75" because of coercion. JavaScript converts the number 7 into a string, see question 15. We can concatenate two strings using the +operator. "7" + "5" results in "75".`,
+  },
+  {
+    text: "What's the value of num?",
+    codeText: `const num = parseInt("7*6", 10);`,
+    options: [
+      {
+        text: `42`,
+        id: "1",
+      },
+      {
+        text: `"42"`,
+        id: "2",
+      },
+      {
+        text: `7`,
+        id: "3",
+      },
+      {
+        text: `NaN`,
+        id: "4",
+      },
+    ],
+    answer: "3",
+    answerDescription: `Only the first numbers in the string is returned. Based on the radix (the second argument in order to specify what type of number we want to parse it to: base 10, hexadecimal, octal, binary, etc.), the parseInt checks whether the characters in the string are valid. Once it encounters a character that isn't a valid number in the radix, it stops parsing and ignores the following characters.\n
+    \n* is not a valid number. It only parses "7" into the decimal 7. num now holds the value of 7.`,
+  },
+  {
+    text: "What's the output?",
+    codeText: `[1, 2, 3].map(num => {
+      if (typeof num === "number") return;
+      return num * 2;
+    });`,
+    options: [
+      {
+        text: `[]`,
+        id: "1",
+      },
+      {
+        text: `[null, null, null]`,
+        id: "2",
+      },
+      {
+        text: `[undefined, undefined, undefined]`,
+        id: "3",
+      },
+      {
+        text: `[ 3 x empty ]`,
+        id: "4",
+      },
+    ],
+    answer: "3",
+    answerDescription: `When mapping over the array, the value of num is equal to the element it's currently looping over. In this case, the elements are numbers, so the condition of the if statement typeof num === "number" returns true. The map function creates a new array and inserts the values returned from the function.\n\n
+    \nHowever, we don't return a value. When we don't return a value from the function, the function returns undefined. For every element in the array, the function block gets called, so for each element we return undefined.`,
+  },
 ];
+
+export const fullQuestionsLength = questions.length;
+
+export const getQuestions = (len) => {
+  let questionArr = [...questions];
+  questionArr = shuffleArray(questionArr);
+  let data = [];
+  for (let i = 0; i < len; i++) {
+    data.push(questionArr[i]);
+  }
+  return data;
+};
+
+const shuffleArray = (arr) => {
+  var m = arr.length,
+    t,
+    i;
+  while (m) {
+    i = Math.floor(Math.random() * m--);
+    t = arr[m];
+    arr[m] = arr[i];
+    arr[i] = t;
+  }
+  return arr;
+};

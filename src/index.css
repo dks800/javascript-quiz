@@ -27,3 +27,34 @@ figure,
 p {
   margin: 10px 0;
 }
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+@media (max-width: 770px) {
+  #root {
+    min-height: 80vh;
+  }
+}
+
+.created-by {
+  position: fixed;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #5a5a5a8c;
+  color: white;
+  padding: 0 25px;
+  border-radius: 10px;
+  flex-wrap: wrap-reverse;
+}
+
+.created-by img.linked-in {
+  background-color: white;
+}
