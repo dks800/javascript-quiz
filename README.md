@@ -1,8 +1,8 @@
 # JavaScript Quiz App
 
-**Application is `live` at: [URL to update](URL to update)**
+**Application is `live` at: [https://javascripquiz0.netlify.app/](https://javascripquiz0.netlify.app/)**
 
-This is a quiz application that generates `random questions` on each attempt. It is built using `ReactJS` and utilizes `ChakraUI` for styling. The app remembers the user's session and score, and displays the user's score at the end of the quiz. If the quiz is interupted and the tab is close by any chance, application will resume from the same place and user will have an option to continue or restart the quiz.
+This is a `JavaScript` quiz application that generates `random questions` on each attempt. It is built using `ReactJS` and utilizes `ChakraUI` for styling. The app remembers the user's session and score, and displays the user's score at the end of the quiz. If the quiz is interupted and the tab is close by any chance, application will resume from the same place and user will have an option to continue or restart the quiz.
 
 This quiz utilized questions posted on this repository:
 

@@ -19,7 +19,7 @@ export default function Score() {
   };
   const getScoreTitle = (score) => {
     if (score >= 0 && score <= 40)
-      return "Tighten you belt, pull your sleeves. You need to learn more!";
+      return "Tighten your belt, pull your sleeves. You need to learn more!";
     if (score > 40 && score <= 65)
       return "You fella! did a good job, just need to clear some more concepts!";
     if (score > 65 && score <= 85)
